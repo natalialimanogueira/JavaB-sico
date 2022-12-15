@@ -1,4 +1,4 @@
-Este Código é um cógigo onde pratico o assunto de herança. 
+Este Código é um código onde pratico o assunto de herança. 
 A atividade proposta é descrita logo abaixo
 
 
