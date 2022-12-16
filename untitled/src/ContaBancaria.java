@@ -6,7 +6,12 @@ public class ContaBancaria {
     private double saldo;
     private String dataAbertura;
 
-    public ContaBancaria(String nomeTitular, int numeroConta) {
+    public ContaBancaria() {
+
+    }
+
+    public ContaBancaria(String nomeTitular, int numeroConta, String agencia, double saldo, String dataAbertura) {
+        this.saldo = saldo;
         this.nomeTitular = nomeTitular;
         this.numeroConta = numeroConta;
         this.agencia = agencia;
@@ -45,10 +50,12 @@ public class ContaBancaria {
     public boolean sacar (double valor){
         if(valor <= saldo ){
             saldo = saldo - valor;
-            System.out.println("Transação Realisada com sucesso.");
+            System.out.println("Transação de saque realisada com sucesso.");
+
             return true;
         }else{
             System.out.println("Não foi possivel realizar a transação");
+            System.out.println("O valor solicitado foi superior ao valor disponivel no saldo");
             return false;
         }
     }
@@ -56,7 +63,7 @@ public class ContaBancaria {
     public void depositar (double valor){
         if(valor >= 0) {
             saldo = saldo + valor;
-            System.out.println("Transação Realisada com sucesso.");
+            System.out.println("Transação de depósito realisada com sucesso.");
             System.out.println("Saldo atual é de:" + saldo);
         }else{
             System.out.println("Não foi possivel realizar a transação. O valor precisa ser maior que zero");
