@@ -1,41 +1,41 @@
-public class ContaEspecial extends ContaBancaria {
+public class ContaEspecial extends ContaBancaria{
 
     private float limite = 1000;
-    protected double novoSaldo = 0;
-
-    public ContaEspecial(String nomeTitular, int numeroConta, String agencia, double saldo, String dataAbertura, double novoSaldo) {
-        super(nomeTitular, numeroConta, agencia, saldo, dataAbertura);
-        this.novoSaldo = novoSaldo;
-    }
-    public ContaEspecial() {
+    public ContaEspecial(String nomeTitular, int numeroConta, String agencia, String dataAbertura, double saldo) {
+        super(nomeTitular, numeroConta, agencia, dataAbertura, saldo);
+        this.limite = limite;
 
     }
-
     public float getLimite() {
+
         return limite;
     }
 
-    public double getNovoSaldo() {
-        return novoSaldo;
-    }
-
-    public void setLimite(float limite) {
-        this.limite = limite;
-    }
-
     @Override
-    public boolean sacar (double valor) {
-        if (valor <= limite) {
-            novoSaldo = getSaldo() - valor;
-            System.out.println("O saldo  atualizado é de:" + getSaldo());
-            System.out.println("O novoSaldo  atualizado é de:" + novoSaldo);
-            return true;
-        }else{
-            return false;
-        }
+    public String toString() {
+        return "ContaBancaria{" +
+                "nomeTitular='" + super.getNomeTitular() + '\'' +
+                ", numeroConta=" + super.getNumeroConta() +
+                ", agencia='" + super.getAgencia() + '\'' +
+                ", dataAbertura='" + super.getDataAbertura()+ '\'' +
+
+                '}';
     }
-
-
-
-
+    @Override
+    public double sacar (double valor) {
+        do {
+            System.out.println("Valor do  saldo na contaBancaria antes de iniciar os saques no limite: " + super.getSaldo());
+            //   300      1000
+            if (valor <= limite) {
+                //            90        -   100
+                setSaldo(getSaldo() - valor);
+                limite = (float) (limite - valor);
+                System.out.println("O saldo atualizado na conta especial após o saque no limite é de: " + super.getSaldo());
+                System.out.println("O limete atualizado na conta especial após o saque é de: " + getLimite());
+            } else {
+                System.out.println(" Saque na conta especial não foi realizado. Valor solicitado é superio ao limite.");
+            }
+            return getSaldo();
+        } while(super.getSaldo() <= limite);
+    }
 }

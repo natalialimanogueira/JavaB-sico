@@ -6,15 +6,13 @@ public class ContaBancaria {
     private double saldo;
     private String dataAbertura;
 
-    public ContaBancaria() {
 
-    }
+    public ContaBancaria(String nomeTitular, int numeroConta, String agencia, String dataAbertura, double saldo) {
 
-    public ContaBancaria(String nomeTitular, int numeroConta, String agencia, double saldo, String dataAbertura) {
-        this.saldo = saldo;
         this.nomeTitular = nomeTitular;
         this.numeroConta = numeroConta;
         this.agencia = agencia;
+        this.saldo = saldo;
         this.dataAbertura = dataAbertura;
     }
 
@@ -38,6 +36,10 @@ public class ContaBancaria {
         return dataAbertura;
     }
 
+    public void setNomeTitular(String nomeTitular) {
+        this.nomeTitular = nomeTitular;
+    }
+
     public void setNumeroConta(int numeroConta) {
         this.numeroConta = numeroConta;
     }
@@ -46,31 +48,52 @@ public class ContaBancaria {
         this.agencia = agencia;
     }
 
+    public double setSaldo(double saldo) {
+        this.saldo = saldo;
+        return saldo;
+    }
 
-    public boolean sacar (double valor){
-        if(valor <= saldo ){
+    public double sacar(double valor) {
+        if (valor <= saldo) {
             saldo = saldo - valor;
             System.out.println("Transação de saque realisada com sucesso.");
+            System.out.println(atualizarSaldoAposTrasaçoes());
 
-            return true;
-        }else{
+        } else {
             System.out.println("Não foi possivel realizar a transação");
             System.out.println("O valor solicitado foi superior ao valor disponivel no saldo");
-            return false;
+            System.out.println(atualizarSaldoAposTrasaçoes());
         }
+        return valor;
     }
 
-    public void depositar (double valor){
-        if(valor >= 0) {
+    public double depositar(double valor) {
+        if (valor >= 0) {
             saldo = saldo + valor;
             System.out.println("Transação de depósito realisada com sucesso.");
-            System.out.println("Saldo atual é de:" + saldo);
-        }else{
+            System.out.println("Saldo atual na conta é :" + saldo);
+            System.out.println(atualizarSaldoAposTrasaçoes());
+
+        } else {
             System.out.println("Não foi possivel realizar a transação. O valor precisa ser maior que zero");
+            System.out.println(atualizarSaldoAposTrasaçoes());
         }
+        return valor;
     }
 
-
+    @Override
+    public String toString() {
+        return "ContaBancaria{" +
+                "nomeTitular='" + nomeTitular + '\'' +
+                ", numeroConta=" + numeroConta +
+                ", agencia='" + agencia + '\'' +
+                ", saldo=" + saldo +
+                ", dataAbertura='" + dataAbertura + '\'' +
+                '}';
+    }
+    public double atualizarSaldoAposTrasaçoes(){
+            return saldo =  saldo;
+    }
 }
 
 
