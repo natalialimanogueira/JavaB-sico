@@ -2,11 +2,9 @@ public class ContaPoupanca extends ContaBancaria {
 
     private int diaRedimento = 30;
     private double novoSaldo;
-
     public ContaPoupanca(String nomeTitular, int numeroConta, String agencia, String dataAbertura, double saldo) {
         super(nomeTitular, numeroConta, agencia, dataAbertura, saldo);
     }
-
     public int getDiaRedimento() {
         return diaRedimento;
     }
@@ -22,6 +20,5 @@ public class ContaPoupanca extends ContaBancaria {
     }
     public double calcularNovoSaldo(double taxa) {
         return setSaldo(diaRedimento * (super.getSaldo() * (taxa/100)) + super.getSaldo());
-
     }
 }
