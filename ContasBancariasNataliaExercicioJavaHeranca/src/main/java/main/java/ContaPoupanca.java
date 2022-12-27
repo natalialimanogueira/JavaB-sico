@@ -1,10 +1,15 @@
-public class ContaPoupanca extends ContaBancaria {
+package main.java;
 
-    private int diaRedimento = 30;
+import main.java.ContaBancaria;
+
+public class ContaPoupanca extends ContaBancaria {
+    private Integer diaRedimento = 30;
     private double novoSaldo;
-    public ContaPoupanca(String nomeTitular, int numeroConta, String agencia, String dataAbertura, double saldo) {
+
+    public ContaPoupanca(String nomeTitular, Integer numeroConta, String agencia, String dataAbertura, Double saldo) {
         super(nomeTitular, numeroConta, agencia, dataAbertura, saldo);
     }
+
     public int getDiaRedimento() {
         return diaRedimento;
     }
@@ -15,10 +20,6 @@ public class ContaPoupanca extends ContaBancaria {
                 ", numeroConta=" + "333" +
                 ", agencia='" + super.getAgencia()+ '\'' +
                 ", saldo=" + super.getSaldo() +
-
                 '}';
-    }
-    public double calcularNovoSaldo(double taxa) {
-        return setSaldo(diaRedimento * (super.getSaldo() * (taxa/100)) + super.getSaldo());
     }
 }
